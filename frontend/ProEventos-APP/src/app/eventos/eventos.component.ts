@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  eventos: any;
+  eventos: any = [];
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    this.getEventos();
+    //this.getEventos();
   }
 
   private getEventos(): void{
