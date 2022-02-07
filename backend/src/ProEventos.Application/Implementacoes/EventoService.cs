@@ -28,7 +28,7 @@ namespace ProEventos.Application
                     return null;
                 }
             } catch (Exception ex) {    
-                throw new Exception("Failed to add new Evento. " + ex.Message);
+                throw new Exception("Failed to add new Evento.\n" + ex.Message);
             }
         }
 
@@ -44,7 +44,7 @@ namespace ProEventos.Application
                 return await _geralPersist.SaveChangesAsync();            
             } 
             catch (Exception ex) {    
-                throw new Exception("Failed to delete evento instance. " + ex.Message);
+                throw new Exception("Failed to delete evento instance.\n" + ex.Message);
             }
         }
 
@@ -66,23 +66,38 @@ namespace ProEventos.Application
                 }
             } 
             catch (Exception ex) {    
-                throw new Exception("Failed to update evento instance. " + ex.Message);
+                throw new Exception("Failed to update evento instance.\n" + ex.Message);
             }
         }
 
-        public Task<Evento[]> GetAllEventosAsync(bool IncluirPalestrantes = false)
+        public async Task<Evento[]> GetAllEventosAsync(bool IncluirPalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try {
+                return await _eventoPersist.GetAllEventosAsync(IncluirPalestrantes);
+            }
+            catch(Exception ex) {
+                throw new Exception("Failed to retrieve all eventos.\n" + ex.Message);
+            }
         }
 
-        public Task<Evento[]> GetAllEventosByTemaAsync(string Tema, bool IncluirPalestrantes = false)
+        public async Task<Evento[]> GetAllEventosByTemaAsync(string Tema, bool IncluirPalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try {
+                return await _eventoPersist.GetAllEventosByTemaAsync(Tema, IncluirPalestrantes);
+            }
+            catch(Exception ex) {
+                throw new Exception("Failed to retrieve eventos by tema.\n" + ex.Message);
+            }        
         }
 
-        public Task<Evento> GetEventoByIdAsync(int EventoId, bool IncluirPalestrantes = false)
+        public async Task<Evento> GetEventoByIdAsync(int EventoId, bool IncluirPalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try {
+                return await _eventoPersist.GetEventoByIdAsync(EventoId, IncluirPalestrantes);
+            }
+            catch(Exception ex) {
+                throw new Exception("Failed to retrieve eventos by id.\n" + ex.Message);
+            }  
         }
     }
 }
