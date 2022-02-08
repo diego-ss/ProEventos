@@ -1,3 +1,4 @@
+import { EventoService } from './../services/evento.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class EventosComponent implements OnInit {
 
   private _termoBusca: string = "";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit(): void {
     this.getEventos();
@@ -31,7 +32,7 @@ export class EventosComponent implements OnInit {
   }
 
   private getEventos(): void{
-    this.httpClient.get("https://localhost:5001/api/eventos").subscribe(
+    this.eventoService.getEventos().subscribe(
       response => {
         this.eventos = response;
         this.eventosFiltrados = this.eventos;
