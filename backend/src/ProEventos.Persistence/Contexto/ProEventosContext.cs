@@ -20,6 +20,22 @@ namespace ProEventos.Persistence.Contexto {
             //configurando chaves da entidade composta
             modelBuilder.Entity<PalestranteEvento>()
                 .HasKey(x => new { x.EventoId, x.PalestranteId});
+
+            //deletando em cascade
+            modelBuilder.Entity<Evento>()
+                .HasMany(e => e.RedesSociais)
+                .WithOne(rs => rs.Evento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Evento>()
+                .HasMany(e => e.Lotes)
+                .WithOne(rs => rs.Evento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Palestrante>()
+                .HasMany(p => p.RedesSociais)
+                .WithOne(rs => rs.Palestrante)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

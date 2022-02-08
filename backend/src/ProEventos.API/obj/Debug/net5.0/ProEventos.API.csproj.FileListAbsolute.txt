@@ -61,3 +61,7 @@ C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF C
 C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\ProEventos.Application.pdb
 C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\ProEventos.Domain.pdb
 C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\ProEventos.Persistence.pdb
+C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Usuário\OneDrive\Desktop\Cursos\FullStack ASP.NET Core, Angular + EF Core\ProEventos\backend\src\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

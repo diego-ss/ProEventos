@@ -29,7 +29,11 @@ namespace ProEventos.API
                 context => context.UseSqlite(Configuration.GetConnectionString("SqliteConnectionString"))
             );
             
-            services.AddControllers();
+            services.AddControllers()
+            //previnindo loops infinitos
+                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
             
             //injeções de dependência
             services.AddScoped<IEventoService, EventoService>();
