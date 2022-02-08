@@ -30,6 +30,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+Resources/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -60,9 +61,6 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
-# Tye
-.tye/
 
 # StyleCop
 StyleCopReport.xml
@@ -305,9 +303,6 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
-# Ionide - VsCode extension for F# Support
-.ionide/
-
 # CodeRush personal settings
 .cr/personal
 
@@ -438,6 +433,7 @@ $RECYCLE.BIN/
 .idea/
 *.sln.iml
 
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
@@ -452,6 +448,7 @@ $RECYCLE.BIN/
 
 # profiling files
 chrome-profiler-events*.json
+speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
@@ -483,3 +480,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Excluindo DB
+*.db
+*.db-shm
+*.db-wal
