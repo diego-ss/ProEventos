@@ -1,6 +1,7 @@
 import { EventoService } from './../services/evento.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../models/Evento';
 
 @Component({
   selector: 'app-eventos',
@@ -8,17 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.scss']
 })
 export class EventosComponent implements OnInit {
-  eventos: any = [];
-  eventosFiltrados: any = [];
-  imgLargura = 50;
-  imgMargem = 2;
-  imgMostrar: boolean = false;
-
+  public eventos: Evento[] = [];
+  public eventosFiltrados: Evento[] = [];
+  public imgLargura = 50;
+  public imgMargem = 2;
+  public imgMostrar: boolean = false;
   private _termoBusca: string = "";
 
   constructor(private eventoService: EventoService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getEventos();
   }
 
@@ -33,19 +33,19 @@ export class EventosComponent implements OnInit {
 
   private getEventos(): void{
     this.eventoService.getEventos().subscribe(
-      response => {
-        this.eventos = response;
+      (eventos: Evento[]) => {
+        this.eventos = eventos;
         this.eventosFiltrados = this.eventos;
       },
       error => console.error(error)
     );
   }
 
-  alterarVisibilidadeImagem(){
+  public alterarVisibilidadeImagem(): void{
     this.imgMostrar = !this.imgMostrar;
   }
 
-  filtrarEventos(termoBusca: string): any {
+  public filtrarEventos(termoBusca: string): any {
     termoBusca = termoBusca.toLowerCase();
     return this.eventos.filter(
             (ev: any) =>
