@@ -31,22 +31,24 @@ export class EventosComponent implements OnInit {
     this.eventosFiltrados = this.termoBusca ? this.filtrarEventos(this.termoBusca) : this.eventos;
   }
 
+  public alterarVisibilidadeImagem(): void{
+    this.imgMostrar = !this.imgMostrar;
+  }
+
   private getEventos(): void{
     this.eventoService.getEventos().subscribe(
       (eventos: Evento[]) => {
         this.eventos = eventos;
         this.eventosFiltrados = this.eventos;
       },
-      error => console.error(error)
+      error => console.error(error),
+      () => {}
     );
-  }
-
-  public alterarVisibilidadeImagem(): void{
-    this.imgMostrar = !this.imgMostrar;
   }
 
   public filtrarEventos(termoBusca: string): any {
     termoBusca = termoBusca.toLowerCase();
+    console.log(this.eventosFiltrados);
     return this.eventos.filter(
             (ev: any) =>
                 ev.tema.toLowerCase().indexOf(termoBusca) !== -1 ||
