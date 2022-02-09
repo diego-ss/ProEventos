@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Evento } from '../models/Evento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-eventos',
@@ -21,7 +22,8 @@ export class EventosComponent implements OnInit {
 
   constructor(private eventoService: EventoService,
               private modalService: BsModalService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   public ngOnInit(): void {
     this.getEventos();
@@ -41,14 +43,23 @@ export class EventosComponent implements OnInit {
   }
 
   private getEventos(): void{
+
+    this.spinner.show();
     this.eventoService.getEventos().subscribe(
-      (eventos: Evento[]) => {
-        this.eventos = eventos;
-        this.eventosFiltrados = this.eventos;
-      },
-      error => console.error(error),
-      () => {}
-    );
+      {
+        next: (eventos: Evento[]) => {
+          this.eventos = eventos;
+          this.eventosFiltrados = this.eventos;
+        },
+        error: (error: any) => {
+          console.error(error)
+          this.spinner.hide();
+          this.toastr.error('falha ao carregar eventos!', 'Ops!');
+        },
+        complete: ()=> {
+          this.spinner.hide();
+        }
+      });
   }
 
   public filtrarEventos(termoBusca: string): any {
@@ -76,5 +87,9 @@ export class EventosComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success('Hello world!', 'Toastr fun!');
+  }
+
+  showFail() {
+    this.toastr.error('Hello world!', 'Toastr fun!');
   }
 }
