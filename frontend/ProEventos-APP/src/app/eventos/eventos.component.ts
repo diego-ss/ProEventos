@@ -1,7 +1,7 @@
 import { EventoService } from './../services/evento.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Evento } from '../models/Evento';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-eventos',
@@ -14,9 +14,11 @@ export class EventosComponent implements OnInit {
   public imgLargura = 50;
   public imgMargem = 2;
   public imgMostrar: boolean = false;
+  public modalRef = {} as BsModalRef;
   private _termoBusca: string = "";
 
-  constructor(private eventoService: EventoService) { }
+
+  constructor(private eventoService: EventoService, private modalService: BsModalService) { }
 
   public ngOnInit(): void {
     this.getEventos();
@@ -54,5 +56,17 @@ export class EventosComponent implements OnInit {
                 ev.tema.toLowerCase().indexOf(termoBusca) !== -1 ||
                 ev.local.toLowerCase().indexOf(termoBusca) !== -1
           );
+  }
+
+  public openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  public confirm(): void {
+    this.modalRef.hide();
+  }
+
+  public decline(): void {
+    this.modalRef.hide();
   }
 }

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CollapseModule } from 'ngx-bootstrap/collapse'
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
@@ -33,6 +34,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
