@@ -3,15 +3,12 @@
   [mostrarBotao]="true"></app-titulo>
 
 <div class="card rounded shadow-sm p-3">
-
   <div class="d-flex">
-
     <div class="flex-fill pr-3">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Filtro:</div>
         </div>
-
         <input
           type="text"
           class="form-control"
@@ -28,13 +25,12 @@
         <b class="ml-1 d-none d-sm-block">novo evento</b>
         </a>
     </div>
-
   </div>
 
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
-        <th>
+        <th class="d-none d-md-table-cell">
           <button type="button" class="btn btn-outline-light btn-sm"
             (click)="alterarVisibilidadeImagem()">
           <i class="{{imgMostrar ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
@@ -43,17 +39,17 @@
         </th>
         <th>#</th>
         <th>Tema</th>
-        <th>Local</th>
+        <th class="d-none d-md-table-cell">Local</th>
         <th>Data</th>
-        <th>Qtd Pessoas</th>
-        <th>Lote</th>
+        <th class="d-none d-md-table-cell">Qtd Pessoas</th>
+        <th class="d-none d-md-table-cell">Lote</th>
         <th>Opções</th>
       </tr>
     </thead>
 
     <tbody *ngIf="eventos && eventosFiltrados.length > 0">
       <tr *ngFor="let evento of eventosFiltrados">
-        <td>
+        <td class="d-none d-md-table-cell">
           <img
             src="/assets/{{evento.imgUrl}}"
             alt=""
@@ -65,16 +61,13 @@
         </td>
         <td>{{evento.id}}</td>
         <td>{{evento.tema}}</td>
-        <td>{{evento.local}}</td>
+        <td class="d-none d-md-table-cell">{{evento.local}}</td>
         <td>{{evento.dataEvento | DateTimeFormat}}</td>
-        <td>{{evento.qtdPessoas}}</td>
-        <td>{{evento.lotes[0].nome}}</td>
+        <td class="d-none d-md-table-cell">{{evento.qtdPessoas}}</td>
+        <td class="d-none d-md-table-cell">{{evento.lotes[0].nome}}</td>
         <td>
           <div class="btn-group" role="group">
-            <button type="button" tooltip="editar" class="btn btn-primary mr-2 btn-sm">
-              <i class="fa fa-edit"></i>
-              </button>
-              <button type="button" tooltip="excluir" (click)="openModal(template)" class="btn btn-danger btn-sm">
+              <button type="button" tooltip="excluir" (click)="openModal(template)" class="btn btn-danger btn-mg">
               <i class="fa fa-trash"></i>
               </button>
           </div>
