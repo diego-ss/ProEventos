@@ -58,6 +58,7 @@ export class EventosComponent implements OnInit {
         },
         complete: ()=> {
           this.spinner.hide();
+          this.toastr.success('eventos carregados com sucesso!', 'Sucesso!');
         }
       });
   }
