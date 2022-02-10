@@ -1,3 +1,4 @@
+import { EventoListaComponent } from './componentes/eventos/evento-lista/evento-lista.component';
 import { PalestrantesComponent } from './componentes/palestrantes/palestrantes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,11 +6,17 @@ import { EventosComponent } from './componentes/eventos/eventos.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { ContatosComponent } from './componentes/contatos/contatos.component';
+import { EventoDetalheComponent } from './componentes/eventos/evento-detalhe/evento-detalhe.component';
 
 const routes: Routes = [
   {
     path: 'eventos',
     component: EventosComponent,
+    children: [
+      { path: 'detalhe/:id', component: EventoDetalheComponent },
+      { path: 'detalhe', component: EventoDetalheComponent },
+      { path: 'lista', component: EventoListaComponent }
+    ]
   },
   {
     path: 'dashboard',
