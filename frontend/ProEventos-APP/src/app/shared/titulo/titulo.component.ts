@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TituloComponent implements OnInit {
 
   @Input() titulo = "";
+  @Input() subtitulo = "";
+  @Input() iconClass = "fa fa-user";
+  @Input() mostrarBotao = false;
 
   constructor() { }
 
