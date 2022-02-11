@@ -6,50 +6,92 @@
         <div class="form-group col-md-12">
           <label>Tema</label>
           <input type="text"
-            class="form-control"
-            [ngClass]="{'is-invalid': form.get('tema')?.errors && form.get('tema')?.touched }"
-            placeholder="Insira o Tema"
-            formControlName="tema">
+          class="form-control"
+          [ngClass]="{'is-invalid': fb.tema?.errors && fb.tema?.touched }"
+          placeholder="Insira o Tema"
+          formControlName="tema">
 
-            <div *ngIf="form.get('tema')?.hasError('required')" class="invalid-feedback">
-              campo obrigatório!
-            </div>
+          <div *ngIf="fb.tema.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
 
-            <div *ngIf="form.get('tema')?.hasError('minlength')" class="invalid-feedback">
-              mínimo de 5 caracteres!
-            </div>
+          <div *ngIf="fb.tema.errors?.minlength" class="invalid-feedback">
+            mínimo de 5 caracteres!
+          </div>
 
-            <div *ngIf="form.get('tema')?.hasError('maxlength')" class="invalid-feedback">
-              máximo de 50 caracteres!
-            </div>
+          <div *ngIf="fb.tema.errors?.maxlength" class="invalid-feedback">
+            máximo de 50 caracteres!
+          </div>
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-group col-md-8">
           <label>Local</label>
-          <input type="text" class="form-control" formControlName="local" placeholder="">
+          <input type="text" class="form-control" formControlName="local" placeholder=""
+          [ngClass]="{'is-invalid': fb.local?.errors && fb.local?.touched }">
+
+          <div *ngIf="fb.local.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
+
         </div>
+
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
-          <input type="datetime" class="form-control" formControlName="dataEvento" placeholder="">
+          <input type="datetime" class="form-control" formControlName="dataEvento" placeholder=""
+          [ngClass]="{'is-invalid': fb.dataEvento?.errors && fb.dataEvento?.touched }">
+
+          <div *ngIf="fb.dataEvento.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-group col-md-2">
           <label>Qtd Pessoas</label>
-          <input type="text" class="form-control" formControlName="qtdPessoas" placeholder="">
+          <input type="text" class="form-control" formControlName="qtdPessoas" placeholder=""
+          [ngClass]="{'is-invalid': fb.qtdPessoas?.errors && fb.qtdPessoas?.touched }">
+
+          <div *ngIf="fb.qtdPessoas.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
+
+          <div *ngIf="fb.qtdPessoas.errors?.max" class="invalid-feedback">
+            quantidade máxima excedida!
+          </div>
         </div>
         <div class="form-group col-md-2">
           <label>Telefone</label>
-          <input type="text" class="form-control" formControlName="telefone" placeholder="(000) 90000-0000">
+          <input type="text" class="form-control" formControlName="telefone" placeholder="(000) 90000-0000"
+          [ngClass]="{'is-invalid': fb.telefone?.errors && fb.telefone?.touched }">
+
+          <div *ngIf="fb.telefone.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Email</label>
-          <input type="text" class="form-control" formControlName="email" placeholder="e-mail">
+          <input type="text" class="form-control" formControlName="email" placeholder="e-mail"
+          [ngClass]="{'is-invalid': fb.email?.errors && fb.email?.touched }">
+
+          <div *ngIf="fb.email.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
+
+          <div *ngIf="fb.email.errors?.email" class="invalid-feedback">
+            este não é um e-mail válido!
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label>Imagem</label>
-          <input type="text" class="form-control" formControlName="imgUrl" placeholder="iagem">
+          <input type="text" class="form-control" formControlName="imgUrl" placeholder="imagem"
+          [ngClass]="{'is-invalid': fb.imgUrl?.errors && fb.imgUrl?.touched }">
+
+          <div *ngIf="fb.imgUrl.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
         </div>
       </div>
     </div>
