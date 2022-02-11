@@ -23,19 +23,20 @@ export class EventoDetalheComponent implements OnInit {
   public referenciarFormulario(): void{
     this.form = this.formBuilder.group(
       {
-        tema: new FormControl('',
-          [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+        tema: new FormControl('', [Validators.required,
+                                    Validators.minLength(5),
+                                    Validators.maxLength(50)]),
         local: ['', [Validators.required]],
         dataEvento: ['', [Validators.required]],
-        qtdPessoas: ['', [
-          Validators.required, Validators.max(1000)
-        ]],
+        qtdPessoas: ['', [Validators.required, Validators.max(1000)]],
         telefone: ['', Validators.required],
-        email: ['', [
-          Validators.required, Validators.email
-        ]],
+        email: ['', [Validators.required, Validators.email]],
         imgUrl: ['', Validators.required],
       }
     );
+  }
+
+  public resetarForm(): void {
+    this.form.reset();
   }
 }
