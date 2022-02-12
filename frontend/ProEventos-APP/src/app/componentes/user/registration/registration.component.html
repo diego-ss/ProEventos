@@ -9,36 +9,90 @@
 
 	<div class="col-md-6">
 
-		<form class="p-1">
+		<form class="p-1" [formGroup]="form">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label>Primeiro Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" />
+          <input type="text" class="form-control" placeholder="Insira o Primeiro nome"
+          formControlName="primeiroNome"
+          [ngClass]="{'is-invalid': fb.primeiroNome?.errors && fb.primeiroNome?.touched }"
+          />
+          <div *ngIf="fb.primeiroNome.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
         </div>
         <div class="form-group col-sm-6">
           <label>Último nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" />
+          <input type="text" class="form-control" placeholder="Insira o Último nome"
+          formControlName="ultimoNome"
+          [ngClass]="{'is-invalid': fb.ultimoNome?.errors && fb.ultimoNome?.touched }"
+          />
+          <div *ngIf="fb.ultimoNome.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
         </div>
       </div>
       <div class="form-group">
         <label for="">Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" />
+        <input class="form-control" type="text" placeholder="Insira o Nome Completo"
+        formControlName="email"
+        [ngClass]="{'is-invalid': fb.email?.errors && fb.email?.touched }"
+        />
+        <div *ngIf="fb.email.errors?.required" class="invalid-feedback">
+          campo obrigatório!
+        </div>
+        <div *ngIf="fb.email.errors?.email" class="invalid-feedback">
+          e-mail inválido!
+        </div>
       </div>
       <div class="form-group">
         <label for="">Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <input class="form-control" type="text" placeholder="Insira o nome de Usuário"
+        formControlName="usuario"
+        [ngClass]="{'is-invalid': fb.usuario?.errors && fb.usuario?.touched }"
+        />
+        <div *ngIf="fb.usuario.errors?.required" class="invalid-feedback">
+          campo obrigatório!
+        </div>
+        <div *ngIf="fb.usuario.errors?.minlength" class="invalid-feedback">
+          mínimo de 5 caracteres!
+        </div>
+        <div *ngIf="fb.usuario.errors?.maxlength" class="invalid-feedback">
+          mínimo de 20 caracteres!
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label for="">Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" />
+          <input class="form-control" type="password" placeholder="Digite uma Senha"
+          formControlName="senha"
+          [ngClass]="{'is-invalid': fb.senha?.errors && fb.senha?.touched }"
+          />
+          <div *ngIf="fb.senha.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
+          <div *ngIf="fb.senha.errors?.minlength" class="invalid-feedback">
+            mínimo de 6 caracteres!
+          </div>
         </div>
         <div class="form-group col-sm-6">
           <label for="">Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" />
+          <input class="form-control" type="password" placeholder="Confirme a Senha"
+          formControlName="confirmarSenha"
+          [ngClass]="{'is-invalid': fb.confirmarSenha?.errors && fb.confirmarSenha?.touched }"
+          />
+          <div *ngIf="fb.confirmarSenha.errors?.required" class="invalid-feedback">
+            campo obrigatório!
+          </div>
+          <div *ngIf="fb.confirmarSenha.errors?.minlength" class="invalid-feedback">
+            mínimo de 6 caracteres!
+          </div>
+          <div *ngIf="fb.confirmarSenha.errors?.mustMatch" class="invalid-feedback">
+            senhas não conferem!
+          </div>
         </div>
       </div>
       <div class="form-row p-1 mb-3">
