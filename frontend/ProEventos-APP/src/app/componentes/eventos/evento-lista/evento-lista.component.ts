@@ -52,6 +52,7 @@ export class EventoListaComponent implements OnInit {
         next: (eventos: Evento[]) => {
           this.eventos = eventos;
           this.eventosFiltrados = this.eventos;
+          console.log(this.eventos);
         },
         error: (error: any) => {
           console.error(error)

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using ProEventos.Application.Contratos;
 using ProEventos.Application.DTOs;
 using ProEventos.Domain;
@@ -11,20 +12,26 @@ namespace ProEventos.Application
     {
         public IEventoPersist _eventoPersist { get; }
         public IGeralPersist _geralPersist{ get; }
+        public IMapper _mapper{ get; }
 
-        public EventoService(IEventoPersist eventoPersist, IGeralPersist geralPersist)
+        public EventoService(IEventoPersist eventoPersist, 
+                             IGeralPersist geralPersist, 
+                             IMapper mapper)
         {
             this._eventoPersist = eventoPersist;
             this._geralPersist = geralPersist;
+            this._mapper = mapper;
         }
 
         public async Task<EventoDTO> AddEvento(EventoDTO evento)
         {
             try{
-                _geralPersist.Add<Evento>(evento);
+
+                var model = _mapper.Map<Evento>(evento);
+                _geralPersist.Add<Evento>(model);
 
                 if(await _geralPersist.SaveChangesAsync()) {
-                    return evento;
+                return _mapper.Map<EventoDTO>(model);
                 } else {
                     return null;
                 }
@@ -58,10 +65,12 @@ namespace ProEventos.Application
                     return null;
                 
                 evento.Id = oldEvento.Id;
-                _geralPersist.Update<Evento>(evento);
+
+                var model = _mapper.Map<Evento>(evento);
+                _geralPersist.Update<Evento>(model);
 
                 if(await _geralPersist.SaveChangesAsync()) {
-                    return evento;
+                return _mapper.Map<EventoDTO>(model);
                 } else {
                     return null;
                 }
@@ -74,7 +83,7 @@ namespace ProEventos.Application
         public async Task<EventoDTO[]> GetAllEventosAsync(bool IncluirPalestrantes = false)
         {
             try {
-                return await _eventoPersist.GetAllEventosAsync(IncluirPalestrantes);
+                return _mapper.Map<EventoDTO[]>(await _eventoPersist.GetAllEventosAsync(IncluirPalestrantes));
             }
             catch(Exception ex) {
                 throw new Exception("Failed to retrieve all eventos.\n" + ex.Message);
@@ -84,7 +93,7 @@ namespace ProEventos.Application
         public async Task<EventoDTO[]> GetAllEventosByTemaAsync(string Tema, bool IncluirPalestrantes = false)
         {
             try {
-                return await _eventoPersist.GetAllEventosByTemaAsync(Tema, IncluirPalestrantes);
+                return _mapper.Map<EventoDTO[]>(await _eventoPersist.GetAllEventosByTemaAsync(Tema, IncluirPalestrantes));
             }
             catch(Exception ex) {
                 throw new Exception("Failed to retrieve eventos by tema.\n" + ex.Message);
@@ -94,7 +103,7 @@ namespace ProEventos.Application
         public async Task<EventoDTO> GetEventoByIdAsync(int EventoId, bool IncluirPalestrantes = false)
         {
             try {
-                return await _eventoPersist.GetEventoByIdAsync(EventoId, IncluirPalestrantes);
+                return _mapper.Map<EventoDTO>(await _eventoPersist.GetEventoByIdAsync(EventoId, IncluirPalestrantes));
             }
             catch(Exception ex) {
                 throw new Exception("Failed to retrieve eventos by id.\n" + ex.Message);

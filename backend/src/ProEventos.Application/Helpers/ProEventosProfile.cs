@@ -11,6 +11,8 @@ namespace ProEventos.Application.Helpers
         public ProEventosProfile()
         {
             CreateMap<Evento, EventoDTO>();
+            CreateMap<EventoDTO, Evento>();
         }
     }
 }
+ 
