@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ProEventos.Application.DTOs
 {
@@ -12,5 +13,8 @@ namespace ProEventos.Application.DTOs
         public string ImgUrl { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+        public IEnumerable<LoteDTO> Lotes { get; set; }
+        public IEnumerable<RedeSocialDTO> RedesSociais { get; set; }
+        public IEnumerable<PalestranteDTO> Palestrantes { get; set; }
     }
 }
