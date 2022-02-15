@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProEventos.Application.Contratos;
 using Microsoft.AspNetCore.Http;
 using ProEventos.Domain;
+using System.Collections.Generic;
+using ProEventos.Application.DTOs;
 
 namespace ProEventos.API.Controllers
 {
@@ -29,7 +31,7 @@ namespace ProEventos.API.Controllers
 
                 if(eventosList == null)
                     return NotFound("Nenhum evento encontrado.");
-                
+
                 return Ok(eventosList);
             } 
             catch (Exception ex){
@@ -79,7 +81,7 @@ namespace ProEventos.API.Controllers
         [ProducesResponseType(500)]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Post(Evento model){
+        public async Task<IActionResult> Post(EventoDTO model){
             try{
                 var evento = await this._eventoService.AddEvento(model);
                 
@@ -97,7 +99,7 @@ namespace ProEventos.API.Controllers
         [ProducesResponseType(500)]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Put(int id, Evento model){
+        public async Task<IActionResult> Put(int id, EventoDTO model){
             try{
                 var evento = await this._eventoService.UpdateEvento(id, model);
 

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ProEventos.Application.Contratos;
+using ProEventos.Application.DTOs;
 using ProEventos.Domain;
 using ProEventos.Persistence.Contratos;
 
@@ -17,7 +18,7 @@ namespace ProEventos.Application
             this._geralPersist = geralPersist;
         }
 
-        public async Task<Evento> AddEvento(Evento evento)
+        public async Task<EventoDTO> AddEvento(EventoDTO evento)
         {
             try{
                 _geralPersist.Add<Evento>(evento);
@@ -48,7 +49,7 @@ namespace ProEventos.Application
             }
         }
 
-        public async Task<Evento> UpdateEvento(int eventoId, Evento evento)
+        public async Task<EventoDTO> UpdateEvento(int eventoId, EventoDTO evento)
         {
              try{
                  var oldEvento = await _eventoPersist.GetEventoByIdAsync(eventoId);
@@ -70,7 +71,7 @@ namespace ProEventos.Application
             }
         }
 
-        public async Task<Evento[]> GetAllEventosAsync(bool IncluirPalestrantes = false)
+        public async Task<EventoDTO[]> GetAllEventosAsync(bool IncluirPalestrantes = false)
         {
             try {
                 return await _eventoPersist.GetAllEventosAsync(IncluirPalestrantes);
@@ -80,7 +81,7 @@ namespace ProEventos.Application
             }
         }
 
-        public async Task<Evento[]> GetAllEventosByTemaAsync(string Tema, bool IncluirPalestrantes = false)
+        public async Task<EventoDTO[]> GetAllEventosByTemaAsync(string Tema, bool IncluirPalestrantes = false)
         {
             try {
                 return await _eventoPersist.GetAllEventosByTemaAsync(Tema, IncluirPalestrantes);
@@ -90,7 +91,7 @@ namespace ProEventos.Application
             }        
         }
 
-        public async Task<Evento> GetEventoByIdAsync(int EventoId, bool IncluirPalestrantes = false)
+        public async Task<EventoDTO> GetEventoByIdAsync(int EventoId, bool IncluirPalestrantes = false)
         {
             try {
                 return await _eventoPersist.GetEventoByIdAsync(EventoId, IncluirPalestrantes);
